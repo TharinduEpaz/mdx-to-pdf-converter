@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { useReactToPrint } from "react-to-print";
 import "./index.css";
 import MDXRenderer from "./MDXRenderer";
@@ -62,7 +63,10 @@ function App() {
               className="markdown-preview bg-white p-8 min-h-[600px] overflow-auto"
             >
               <MDXRenderer>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown 
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                >
                   {markdown}
                 </ReactMarkdown>
               </MDXRenderer>
