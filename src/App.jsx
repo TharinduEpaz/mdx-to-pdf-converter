@@ -18,8 +18,18 @@ function App() {
     content: () => previewRef.current,
     contentRef: previewRef,
     documentTitle: "markdown-document",
-    onBeforeGetContent: () => setIsGenerating(true),
-    onAfterPrint: () => setIsGenerating(false),
+    onBeforeGetContent: () => {
+      setIsGenerating(true);
+      if (previewRef.current) {
+        previewRef.current.classList.add('print-mode');
+      }
+    },
+    onAfterPrint: () => {
+      setIsGenerating(false);
+      if (previewRef.current) {
+        previewRef.current.classList.remove('print-mode');
+      }
+    },
     removeAfterPrint: true,
     scale: 4,
   });

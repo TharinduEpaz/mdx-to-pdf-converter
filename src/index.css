@@ -27,10 +27,42 @@ code, pre code {
 
 .markdown-preview h1 {
   @apply text-2xl font-bold mb-4;
+  page-break-after: avoid;
+  page-break-inside: avoid;
 }
 
 .markdown-preview h2 {
   @apply text-xl font-semibold mb-3 mt-6;
+  page-break-after: avoid;
+  page-break-inside: avoid;
+}
+
+.markdown-preview h3,
+.markdown-preview h4,
+.markdown-preview h5,
+.markdown-preview h6 {
+  page-break-after: avoid;
+  page-break-inside: avoid;
+}
+
+.markdown-preview p {
+  page-break-inside: avoid;
+}
+
+.markdown-preview pre,
+.markdown-preview blockquote,
+.markdown-preview table {
+  page-break-inside: avoid;
+}
+
+.markdown-preview ul,
+.markdown-preview ol {
+  page-break-inside: avoid;
+}
+
+.markdown-preview img {
+  page-break-inside: avoid;
+  max-width: 100% !important;
 }
 
 /* Table styles for markdown preview */
@@ -84,4 +116,42 @@ code, pre code {
 
 .markdown-preview a {
   @apply text-blue-600 hover:underline;
+}
+
+/* Print-specific styles */
+@media print {
+  .markdown-preview {
+    font-size: 12pt;
+  }
+  
+  .markdown-preview pre,
+  .markdown-preview code {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  
+  .markdown-preview a {
+    text-decoration: underline;
+    color: #000;
+  }
+  
+  .markdown-preview table {
+    page-break-inside: avoid;
+  }
+  
+  .markdown-preview tr {
+    page-break-inside: avoid;
+  }
+  
+  /* Force a page break */
+  .page-break {
+    page-break-after: always;
+  }
+}
+
+/* Additional class for print mode */
+.print-mode {
+  width: 100%;
+  max-width: 100%;
+  padding: 20mm;
 }
